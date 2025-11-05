@@ -1,0 +1,35 @@
+{
+  "name": "tejoss-platform-serverless",
+  "version": "2.0.0",
+  "description": "Tejoss Platform - Serverless API with Supabase + Vercel",
+  "main": "api/index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "agriculture",
+    "platform",
+    "serverless",
+    "supabase",
+    "vercel"
+  ],
+  "author": "Tejoss Platform",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.79.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "midtrans-client": "^1.4.3"
+  },
+  "devDependencies": {
+    "vercel": "^33.0.0"
+  },
+  "engines": {
+    "node": ">=18.x"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "type": "commonjs"
+}

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Platform jasa pertanian one-stop service yang transparan, berkualitas, dan terpercaya. Layanan lengkap dari tanam hingga panen.">
+    <meta name="keywords" content="jasa pertanian, jasa panen, jasa tanam, sewa traktor, angkut hasil panen">
+    <title>Tejoss - Platform Jasa Pertanian One-Stop Service</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Midtrans Snap -->
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="Mid-client-0_EDjv_ex-42v0zU"></script>
+    <!-- Note: Ganti dengan production URL untuk live: https://app.midtrans.com/snap/snap.js -->
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/admin.css">
+</head>
+<body class="bg-white">
+    
+    <!-- Header -->
+    <header id="header" class="bg-white shadow-sm border-b border-green-100 sticky top-0 z-50">
+        <!-- Top bar -->
+        <div class="bg-green-600 text-white py-2">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center text-sm">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="phone" class="h-4 w-4"></i>
+                            <span>+62 812-3456-7890</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="mail" class="h-4 w-4"></i>
+                            <span>info@tejoss.id</span>
+                        </div>
+                    </div>
+                    <div>Layanan 24/7 untuk kebutuhan pertanian Anda</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Header -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <img src="7ec137e6-6bdb-4ca7-b7d7-4dd63d7063e9.png" alt="Tejoss" class="h-12 w-auto cursor-pointer" onclick="navigateTo('home')">
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-8" id="desktop-nav">
+                    <button onclick="navigateTo('home')" class="nav-link" data-section="home">Beranda</button>
+                    <button onclick="navigateTo('services')" class="nav-link" data-section="services">Layanan</button>
+                    <button onclick="navigateTo('testimonials')" class="nav-link" data-section="testimonials">Testimoni</button>
+                    <button onclick="navigateTo('education')" class="nav-link" data-section="education">Edukasi</button>
+                    <button onclick="navigateTo('about')" class="nav-link" data-section="about">Tentang Kami</button>
+                </nav>
+
+                <!-- User Menu / CTA -->
+                <div class="hidden lg:flex items-center gap-4" id="auth-buttons">
+                    <button onclick="navigateTo('login')" class="text-gray-700 hover:text-green-600 px-4 py-2">
+                        Masuk
+                    </button>
+                    <button onclick="navigateTo('order')" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-md">
+                        Pesan Sekarang
+                    </button>
+                </div>
+
+                <!-- User Profile (Hidden by default, shown when logged in) -->
+                <div class="hidden lg:flex items-center gap-4" id="user-menu" style="display: none;">
+                    <div class="relative">
+                        <button onclick="toggleUserDropdown()" class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-medium">
+                                <span id="user-initials">U</span>
+                            </div>
+                        </button>
+                        <!-- Dropdown -->
+                        <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg border border-gray-200 z-50">
+                            <div class="p-4 border-b">
+                                <p class="font-medium" id="user-name">User Name</p>
+                                <p class="text-sm text-gray-500" id="user-email">user@email.com</p>
+                            </div>
+                            <button onclick="navigateTo('order')" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-2">
+                                <i data-lucide="message-square" class="h-4 w-4"></i>
+                                Pesan Layanan
+                            </button>
+                            <button onclick="navigateTo('profile')" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-2">
+                                <i data-lucide="user" class="h-4 w-4"></i>
+                                Profil & Testimoni
+                            </button>
+                            <button onclick="navigateTo('myorders')" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-2">
+                                <i data-lucide="package" class="h-4 w-4"></i>
+                                Pesanan Saya
+                            </button>
+                            <div class="border-t">
+                                <button onclick="handleLogout()" class="w-full text-left px-4 py-2 hover:bg-gray-50 text-red-600 flex items-center gap-2">
+                                    <i data-lucide="log-out" class="h-4 w-4"></i>
+                                    Keluar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="lg:hidden" onclick="toggleMobileMenu()">
+                    <i data-lucide="menu" class="h-6 w-6 text-gray-700"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t">
+            <div class="px-4 py-4 space-y-2">
+                <button onclick="navigateTo('home')" class="mobile-nav-link block w-full text-left px-4 py-3 rounded-lg">Beranda</button>
+                <button onclick="navigateTo('services')" class="mobile-nav-link block w-full text-left px-4 py-3 rounded-lg">Layanan</button>
+                <button onclick="navigateTo('testimonials')" class="mobile-nav-link block w-full text-left px-4 py-3 rounded-lg">Testimoni</button>
+                <button onclick="navigateTo('education')" class="mobile-nav-link block w-full text-left px-4 py-3 rounded-lg">Edukasi</button>
+                <button onclick="navigateTo('about')" class="mobile-nav-link block w-full text-left px-4 py-3 rounded-lg">Tentang Kami</button>
+                <div class="pt-4 border-t space-y-2">
+                    <button onclick="navigateTo('login')" class="w-full bg-white border border-green-600 text-green-600 px-4 py-2 rounded-md">
+                        Masuk
+                    </button>
+                    <button onclick="navigateTo('order')" class="w-full bg-green-600 text-white px-4 py-2 rounded-md">
+                        Pesan Sekarang
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="app-content">
+        <!-- Content will be dynamically loaded here -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <!-- Newsletter -->
+        <div class="bg-green-600 py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-4">Dapatkan Tips Pertanian & Update Terbaru</h3>
+                    <p class="text-green-100 mb-8 max-w-2xl mx-auto">
+                        Berlangganan newsletter kami untuk mendapatkan tips pertanian, informasi layanan terbaru, dan penawaran khusus.
+                    </p>
+                    <form onsubmit="handleNewsletter(event)" class="max-w-md mx-auto flex gap-4">
+                        <input type="email" placeholder="Masukkan email Anda" class="flex-1 px-4 py-2 rounded-md text-gray-900" required>
+                        <button type="submit" class="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-md">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Footer -->
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Company Info -->
+                    <div>
+                        <img src="7ec137e6-6bdb-4ca7-b7d7-4dd63d7063e9.png" alt="Tejoss" class="h-12 w-auto mb-4">
+                        <p class="text-gray-300 mb-4">
+                            Solusi one-stop untuk semua kebutuhan jasa pertanian modern. Transparan, berkualitas, dan terpercaya.
+                        </p>
+                        <div class="flex space-x-4">
+                            <button class="text-gray-300 hover:text-white">
+                                <i data-lucide="facebook" class="h-5 w-5"></i>
+                            </button>
+                            <button class="text-gray-300 hover:text-white">
+                                <i data-lucide="instagram" class="h-5 w-5"></i>
+                            </button>
+                            <button class="text-gray-300 hover:text-white">
+                                <i data-lucide="twitter" class="h-5 w-5"></i>
+                            </button>
+                            <button class="text-gray-300 hover:text-white">
+                                <i data-lucide="youtube" class="h-5 w-5"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div>
+                        <h4 class="font-semibold mb-6">Menu Utama</h4>
+                        <ul class="space-y-3">
+                            <li><button onclick="navigateTo('home')" class="text-gray-300 hover:text-white">Beranda</button></li>
+                            <li><button onclick="navigateTo('services')" class="text-gray-300 hover:text-white">Layanan</button></li>
+                            <li><button onclick="navigateTo('testimonials')" class="text-gray-300 hover:text-white">Testimoni</button></li>
+                            <li><button onclick="navigateTo('education')" class="text-gray-300 hover:text-white">Edukasi</button></li>
+                            <li><button onclick="navigateTo('about')" class="text-gray-300 hover:text-white">Tentang Kami</button></li>
+                        </ul>
+                    </div>
+
+                    <!-- Services -->
+                    <div>
+                        <h4 class="font-semibold mb-6">Layanan Kami</h4>
+                        <ul class="space-y-3">
+                            <li><button onclick="navigateTo('services')" class="text-gray-300 hover:text-white">Jasa Panen</button></li>
+                            <li><button onclick="navigateTo('services')" class="text-gray-300 hover:text-white">Jasa Tanam</button></li>
+                            <li><button onclick="navigateTo('services')" class="text-gray-300 hover:text-white">Jasa Angkut</button></li>
+                            <li><button onclick="navigateTo('services')" class="text-gray-300 hover:text-white">Jasa Giling</button></li>
+                            <li><button onclick="navigateTo('services')" class="text-gray-300 hover:text-white">Sewa Traktor</button></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact -->
+                    <div>
+                        <h4 class="font-semibold mb-6">Hubungi Kami</h4>
+                        <div class="space-y-4 text-sm">
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="map-pin" class="h-5 w-5 text-green-500 mt-0.5"></i>
+                                <p class="text-gray-300">Jl. Matahari No. 3<br>Pangkajene dan Kepulauan 90614</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="phone" class="h-5 w-5 text-green-500"></i>
+                                <p class="text-gray-300">+62 819-3441-5371</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="mail" class="h-5 w-5 text-green-500"></i>
+                                <p class="text-gray-300">tejossofficial@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div class="border-t border-gray-700 py-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center text-sm">
+                    <div class="text-gray-400 mb-4 md:mb-0">
+                        © 2024 Tejoss - Petani Joss. All rights reserved.
+                    </div>
+                    <div class="flex gap-6">
+                        <button class="text-gray-400 hover:text-white">Kebijakan Privasi</button>
+                        <button class="text-gray-400 hover:text-white">Syarat & Ketentuan</button>
+                        <button class="text-gray-400 hover:text-white">FAQ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div id="chatbot" class="fixed bottom-4 right-4 z-50">
+        <!-- Chat Window -->
+        <div id="chat-window" class="hidden mb-4 w-96 max-w-[calc(100vw-2rem)] bg-white rounded-lg shadow-2xl border border-gray-200">
+            <div class="bg-green-600 text-white p-4 rounded-t-lg flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="bot" class="h-6 w-6"></i>
+                    <div>
+                        <h3 class="font-semibold">Asisten Tejoss</h3>
+                        <p class="text-xs text-green-100">Online</p>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-white hover:bg-green-700 p-1 rounded">
+                    <i data-lucide="x" class="h-5 w-5"></i>
+                </button>
+            </div>
+            <div id="chat-messages" class="h-96 overflow-y-auto p-4 space-y-4 bg-gray-50">
+                <!-- Messages will be added here -->
+            </div>
+            <div class="p-4 border-t bg-white rounded-b-lg">
+                <form onsubmit="sendChatMessage(event)" class="flex gap-2">
+                    <input type="text" id="chat-input" placeholder="Ketik pesan..." class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <button type="submit" class="bg-green-600 hover:bg-green-700 text-white p-2 rounded-md">
+                        <i data-lucide="send" class="h-5 w-5"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Chat Launcher Button -->
+        <button id="chat-launcher" onclick="toggleChat()" class="bg-green-600 hover:bg-green-700 text-white rounded-full p-4 shadow-lg">
+            <i data-lucide="message-circle" class="h-6 w-6"></i>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Load in correct order: config → API → components → pages → admin → midtrans → app → init -->
+    <script src="./js/config.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/api-integration.js"></script>
+    <script src="./js/components.js"></script>
+    <script src="./js/pages.js"></script>
+    <script src="./js/pages-api-helpers.js"></script>
+    <script src="./js/pages-admin.js"></script>
+    <script src="./js/midtrans-payment.js"></script>
+    <script src="./js/app.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Initialize app when DOM is ready
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Initializing Tejoss App...');
+            try {
+                initializeApp();
+                console.log('✅ App initialized successfully');
+            } catch (error) {
+                console.error('❌ Error initializing app:', error);
+            }
+        });
+    </script>
+</body>
+</html>
