@@ -1,33 +1,142 @@
-# ===================================
-# VERCEL IGNORE FILE
-# File-file yang TIDAK perlu di-deploy
-# ===================================
+# Vercel Ignore - Tejoss Platform
+# ====================================
+# File ini memberitahu Vercel untuk IGNORE folder/file tertentu
+# sehingga tidak di-build atau di-deploy sebagai serverless functions
 
-# Backend folder (not used - using api/ instead)
+# ============================================================
+# BACKEND FOLDER (Express.js - TIDAK DIPAKAI DI VERCEL!)
+# ============================================================
 backend/
+backend/**
 
-# React components (using vanilla HTML/JS)
-components/
-App.tsx
-styles/globals.css
+# ============================================================
+# NODE MODULES & DEPENDENCIES
+# ============================================================
+node_modules/
+node_modules/**
+backend/node_modules/
+backend/node_modules/**
 
-# Documentation files
+# ============================================================
+# DOCUMENTATION FILES
+# ============================================================
 *.md
-!README.md
+README.md
+API_ENDPOINTS.md
+API_REFACTOR_SUMMARY.md
+DEPLOY_*.md
+FIX_*.md
+GIT_*.md
+MIGRATION_*.md
+MULAI_*.md
+PANDUAN_*.md
+PERBAIKAN_*.md
+QUICK_*.md
+REFACTOR_*.md
+SERVICES_*.md
+SETUP_*.md
+TROUBLESHOOTING_*.md
+UPDATE_*.md
+UPDATED_*.md
+CHEAT_SHEET.md
+COPY_PASTE_*.md
+CREATE_IGNORE_FILES.md
+LANGKAH_SELANJUTNYA.md
+PUSH_ULANG_SEKARANG.md
+Attributions.md
+guidelines/
+guidelines/**
 
-# Batch files
+# ============================================================
+# BATCH & SCRIPT FILES
+# ============================================================
 *.bat
+*.sh
+cleanup-git.bat
+fix-testimoni.bat
+restart-backend.bat
+start-tejoss.bat
+test-connection.bat
+test-db-connection.bat
 
-# Test files
-test-*.js
+# ============================================================
+# TEST & UTILITY FILES
+# ============================================================
 generate-admin-hash.js
+backend/generate-admin-hash.js
+backend/test-connection.js
+backend/config/seedAdmin.js
+backend/config/seedServices.js
+backend/config/fixCorruptData.js
+backend/config/fixUserRoles.js
+backend/config/initDatabase.js
+backend/config/updateTestimonialsTable.js
 
-# Local environment
+# ============================================================
+# GIT & VERSION CONTROL
+# ============================================================
+.git/
+.gitignore
+.gitattributes
+
+# ============================================================
+# IDE & EDITOR
+# ============================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ============================================================
+# OS FILES
+# ============================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ============================================================
+# BUILD & CACHE
+# ============================================================
+.cache/
+dist/
+build/
+.next/
+.turbo/
+.vercel/
+
+# ============================================================
+# LOGS
+# ============================================================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+
+# ============================================================
+# ENV FILES (SHOULD ALREADY BE IN .gitignore)
+# ============================================================
 .env
 .env.local
+.env.*.local
+.env.development
+.env.production
 
-# Node modules
-node_modules/
+# ============================================================
+# SUPABASE FOLDER (Migrations only - not functions)
+# ============================================================
+supabase/*.sql
 
-# Guidelines
-guidelines/
+# ============================================================
+# REACT/TSX FILES (We use vanilla JS, not React)
+# ============================================================
+App.tsx
+components/
+components/**
+styles/
+styles/**
+
+# ============================================================
+# END OF FILE
+# ============================================================
