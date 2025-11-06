@@ -219,6 +219,12 @@ class APIClient {
     // ==================== TESTIMONIALS APIs ====================
     
     async getTestimonials(params = {}) {
+        // If userId is provided, fetch user's testimonials
+        if (params.userId) {
+            return this.get(`${API_CONFIG.ENDPOINTS.TESTIMONIALS.LIST}?action=my`);
+        }
+        
+        // Otherwise, fetch public testimonials
         const queryString = new URLSearchParams(params).toString();
         const endpoint = queryString ? `${API_CONFIG.ENDPOINTS.TESTIMONIALS.LIST}?${queryString}` : API_CONFIG.ENDPOINTS.TESTIMONIALS.LIST;
         return this.get(endpoint, { auth: false });
