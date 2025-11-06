@@ -2,7 +2,7 @@
 
 class APIClient {
     constructor() {
-        this.baseURL = API_CONFIG.API_URL;
+        this.baseURL = API_CONFIG.BASE_URL;
         this.timeout = API_CONFIG.TIMEOUT;
     }
 

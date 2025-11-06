@@ -1,58 +1,60 @@
-# Tejoss Platform - Git Ignore
-# ==========================================
-# File ini memberitahu Git untuk TIDAK track file/folder tertentu
-
-# Dependencies
+# ============================================================
+# DEPENDENCIES
+# ============================================================
 node_modules/
+package-lock.json
 backend/node_modules/
 
-# Environment variables
+# ============================================================
+# ENVIRONMENT VARIABLES (RAHASIA!)
+# ============================================================
 .env
 .env.local
-.env.*.local
 .env.development
-.env.production
 .env.test
+.env.production
+backend/.env
 
-# Vercel
-.vercel/
-.vercel
+# ============================================================
+# LOGS
+# ============================================================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Build output
-dist/
-build/
-out/
-.next/
-
-# Cache
-.cache/
-.turbo/
-
-# OS files
+# ============================================================
+# SYSTEM FILES
+# ============================================================
 .DS_Store
 Thumbs.db
 desktop.ini
 
+# ============================================================
 # IDE
+# ============================================================
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# Logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-logs/
+# ============================================================
+# BUILD OUTPUT
+# ============================================================
+dist/
+build/
+.next/
+out/
 
-# Testing
-coverage/
-.nyc_output/
+# ============================================================
+# VERCEL
+# ============================================================
+.vercel
 
-# Temporary files
+# ============================================================
+# TEMPORARY FILES
+# ============================================================
 *.tmp
 *.temp
-temp/
-tmp/
+.cache/
