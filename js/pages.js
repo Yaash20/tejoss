@@ -867,7 +867,7 @@
                           </button>
                       ` : ''}
                       
-                      ${order.status !== 'cancelled' && order.status !== 'completed' ? `
+                      ${order.status !== 'cancelled' && order.status !== 'completed' && order.payment_status !== 'paid' ? `
                           <button onclick="handleCancelOrder('${order.orderId}', '${order.id}')" class="border border-red-600 text-red-600 hover:bg-red-50 px-4 py-2 rounded-md text-sm">
                               Batalkan
                           </button>

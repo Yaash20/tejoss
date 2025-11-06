@@ -60,7 +60,8 @@ async function handleGetOrders(req, res) {
   
   let query = supabase.from('orders').select(`
     *,
-    order_timeline (*)
+    order_timeline (*),
+    users!inner (name, email, phone)
   `);
   
   // Admin sees all orders, users see only their orders
@@ -89,10 +90,13 @@ async function handleGetOrders(req, res) {
     return error(res, 'Gagal mengambil data pesanan', 500);
   }
   
-  // Format timeline
+  // Format timeline and customer data
   const ordersWithTimeline = orders.map(order => ({
     ...order,
-    timeline: order.order_timeline || []
+    timeline: order.order_timeline || [],
+    customer_name: order.users?.name || 'N/A',
+    customer_email: order.users?.email || 'N/A',
+    customer_phone: order.users?.phone || 'N/A'
   }));
   
   return success(res, ordersWithTimeline);

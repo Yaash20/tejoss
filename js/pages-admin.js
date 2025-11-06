@@ -343,7 +343,7 @@ async function renderDashboard() {
 // ============================================
 async function renderServicesManagement() {
     try {
-        const response = await fetch(`${API_CONFIG.BASE_URL}/api/services/admin/all`, {
+        const response = await fetch(`${API_CONFIG.BASE_URL}/api/services?all=true`, {
             headers: { 'Authorization': `Bearer ${AppState.user.token}` }
         });
         const data = await response.json();
