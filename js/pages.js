@@ -9,7 +9,7 @@
                       <!-- Left Side - Branding -->
                       <div class="text-center lg:text-left">
                           <div class="mb-8">
-                              <img src="https://via.placeholder.com/150x50/16a34a/ffffff?text=TEJOSS" alt="Tejoss" class="h-16 w-auto mx-auto lg:mx-0 mb-6">
+                              <img src="7ec137e6-6bdb-4ca7-b7d7-4dd63d7063e9.png" alt="Tejoss" class="h-16 w-auto mx-auto lg:mx-0 mb-6">
                               <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                                   Bergabunglah dengan<br>
                                   <span class="text-green-600">Revolusi Pertanian</span>
