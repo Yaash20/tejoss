@@ -1,0 +1,21 @@
+# Ignore backend folder (not used in production)
+backend/
+
+# Ignore React components (using vanilla HTML/JS)
+components/
+App.tsx
+styles/globals.css
+
+# Ignore documentation
+*.md
+!README.md
+
+# Ignore test files
+test-*.js
+test-*.bat
+
+# Ignore batch files
+*.bat
+
+# Ignore local env
+.env.local

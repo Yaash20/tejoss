@@ -1,91 +1,92 @@
 // Tejoss Platform - Configuration
 
 // ============================================================
-// IMPORTANT: SETELAH DEPLOY KE VERCEL
+// AUTO-DETECT ENVIRONMENT (localhost vs production)
 // ============================================================
-// Ganti BASE_URL dan API_URL dengan Vercel deployment URL:
-// Contoh: 'https://tejoss-platform-xxx.vercel.app'
-// 
-// Untuk localhost development, tetap gunakan http://localhost:5000
+// Tidak perlu ubah manual lagi!
+// - localhost: pakai http://localhost:5000
+// - production: pakai same origin (Vercel)
 // ============================================================
+
+// Detect environment
+const isLocalhost = window.location.hostname === 'localhost' || 
+                   window.location.hostname === '127.0.0.1';
 
 // API Configuration
 const API_CONFIG = {
-    // Base URL untuk backend API
-    // Ubah ini sesuai dengan URL backend Anda
-    BASE_URL: 'http://localhost:5000',
-    API_URL: 'http://localhost:5000/api',
+    // Base URL untuk backend API (auto-detect)
+    BASE_URL: isLocalhost ? 'http://localhost:5000' : '',
     
     // Timeout untuk requests (milliseconds)
     TIMEOUT: 30000,
     
-    // Endpoints
+    // Endpoints (semua sudah pakai prefix /api/)
     ENDPOINTS: {
         // Auth
         AUTH: {
-            REGISTER: '/auth/register',
-            LOGIN: '/auth/login',
-            ME: '/auth/me',
-            PROFILE: '/auth/profile',
-            UPDATE_PROFILE: '/auth/profile',
-            CHANGE_PASSWORD: '/auth/change-password',
-            FORGOT_PASSWORD: '/auth/forgot-password',
-            RESET_PASSWORD: '/auth/reset-password'
+            REGISTER: '/api/auth/register',
+            LOGIN: '/api/auth/login',
+            ME: '/api/auth/me',
+            PROFILE: '/api/auth/profile',
+            UPDATE_PROFILE: '/api/auth/profile',
+            CHANGE_PASSWORD: '/api/auth/change-password',
+            FORGOT_PASSWORD: '/api/auth/forgot-password',
+            RESET_PASSWORD: '/api/auth/reset-password'
         },
         
         // Services
         SERVICES: {
-            LIST: '/services',
-            DETAIL: '/services/:id',
-            CATEGORIES: '/services/categories'
+            LIST: '/api/services',
+            DETAIL: '/api/services/:id',
+            CATEGORIES: '/api/services/categories'
         },
         
         // Orders
         ORDERS: {
-            CREATE: '/orders',
-            LIST: '/orders',
-            DETAIL: '/orders/:id',
-            UPDATE_STATUS: '/orders/:id/status',
-            CANCEL: '/orders/:id/cancel',
-            STATS: '/orders/stats'
+            CREATE: '/api/orders',
+            LIST: '/api/orders',
+            DETAIL: '/api/orders/:id',
+            UPDATE_STATUS: '/api/orders/:id/status',
+            CANCEL: '/api/orders/:id/cancel',
+            STATS: '/api/orders/stats'
         },
         
         // Payments
         PAYMENTS: {
-            CREATE: '/payments',
-            VERIFY: '/payments/verify',
-            DETAIL: '/payments/:id',
-            CALLBACK: '/payments/callback'
+            CREATE: '/api/payments',
+            VERIFY: '/api/payments/verify',
+            DETAIL: '/api/payments/:id',
+            CALLBACK: '/api/payments/callback'
         },
         
         // Testimonials
         TESTIMONIALS: {
-            LIST: '/testimonials',
-            CREATE: '/testimonials',
-            DETAIL: '/testimonials/:id'
+            LIST: '/api/testimonials',
+            CREATE: '/api/testimonials',
+            DETAIL: '/api/testimonials/:id'
         },
         
         // Articles
         ARTICLES: {
-            LIST: '/articles',
-            DETAIL: '/articles/:id',
-            CATEGORIES: '/articles/categories'
+            LIST: '/api/articles',
+            DETAIL: '/api/articles/:id',
+            CATEGORIES: '/api/articles/categories'
         },
         
         // B2B
         B2B: {
-            CREATE: '/b2b',
-            LIST: '/b2b',
-            DETAIL: '/b2b/:id',
-            UPDATE_STATUS: '/b2b/:id/status'
+            CREATE: '/api/b2b',
+            LIST: '/api/b2b',
+            DETAIL: '/api/b2b/:id',
+            UPDATE_STATUS: '/api/b2b/:id/status'
         },
         
         // Notifications
         NOTIFICATIONS: {
-            LIST: '/notifications',
-            UNREAD_COUNT: '/notifications/unread-count',
-            MARK_READ: '/notifications/:id/read',
-            MARK_ALL_READ: '/notifications/read-all'
+            LIST: '/api/notifications',
+            UNREAD_COUNT: '/api/notifications/unread-count',
+            MARK_READ: '/api/notifications/:id/read',
+            MARK_ALL_READ: '/api/notifications/read-all'
         }
     }
 };
