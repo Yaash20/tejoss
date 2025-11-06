@@ -22,22 +22,22 @@ const API_CONFIG = {
     
     // Endpoints (semua sudah pakai prefix /api/)
     ENDPOINTS: {
-        // Auth
+        // Auth - Now using query parameters
         AUTH: {
-            REGISTER: '/api/auth/register',
-            LOGIN: '/api/auth/login',
-            ME: '/api/auth/me',
-            PROFILE: '/api/auth/profile',
-            UPDATE_PROFILE: '/api/auth/profile',
-            CHANGE_PASSWORD: '/api/auth/change-password',
-            FORGOT_PASSWORD: '/api/auth/forgot-password',
-            RESET_PASSWORD: '/api/auth/reset-password'
+            REGISTER: '/api/auth?action=register',
+            LOGIN: '/api/auth?action=login',
+            ME: '/api/auth?action=me',
+            PROFILE: '/api/auth?action=profile',
+            UPDATE_PROFILE: '/api/auth?action=profile',
+            CHANGE_PASSWORD: '/api/auth?action=change-password',
+            FORGOT_PASSWORD: '/api/auth?action=forgot-password',
+            RESET_PASSWORD: '/api/auth?action=reset-password'
         },
         
         // Services
         SERVICES: {
             LIST: '/api/services',
-            DETAIL: '/api/services/:id',
+            DETAIL: '/api/services?id=:id',
             CATEGORIES: '/api/services/categories'
         },
         
@@ -45,17 +45,17 @@ const API_CONFIG = {
         ORDERS: {
             CREATE: '/api/orders',
             LIST: '/api/orders',
-            DETAIL: '/api/orders/:id',
-            UPDATE_STATUS: '/api/orders/:id/status',
-            CANCEL: '/api/orders/:id/cancel',
-            STATS: '/api/orders/stats'
+            DETAIL: '/api/orders?id=:id',
+            UPDATE_STATUS: '/api/orders?id=:id&action=status',
+            CANCEL: '/api/orders?id=:id&action=cancel',
+            STATS: '/api/orders?action=stats'
         },
         
         // Payments
         PAYMENTS: {
-            CREATE: '/api/payments',
+            CREATE: '/api/payments?action=create',
             VERIFY: '/api/payments/verify',
-            DETAIL: '/api/payments/:id',
+            DETAIL: '/api/payments?id=:id',
             CALLBACK: '/api/payments/callback'
         },
         
@@ -63,13 +63,13 @@ const API_CONFIG = {
         TESTIMONIALS: {
             LIST: '/api/testimonials',
             CREATE: '/api/testimonials',
-            DETAIL: '/api/testimonials/:id'
+            DETAIL: '/api/testimonials?id=:id'
         },
         
         // Articles
         ARTICLES: {
             LIST: '/api/articles',
-            DETAIL: '/api/articles/:id',
+            DETAIL: '/api/articles?id=:id',
             CATEGORIES: '/api/articles/categories'
         },
         
@@ -77,15 +77,15 @@ const API_CONFIG = {
         B2B: {
             CREATE: '/api/b2b',
             LIST: '/api/b2b',
-            DETAIL: '/api/b2b/:id',
-            UPDATE_STATUS: '/api/b2b/:id/status'
+            DETAIL: '/api/b2b?id=:id',
+            UPDATE_STATUS: '/api/b2b?id=:id&action=status'
         },
         
         // Notifications
         NOTIFICATIONS: {
             LIST: '/api/notifications',
             UNREAD_COUNT: '/api/notifications/unread-count',
-            MARK_READ: '/api/notifications/:id/read',
+            MARK_READ: '/api/notifications?id=:id&action=read',
             MARK_ALL_READ: '/api/notifications/read-all'
         }
     }

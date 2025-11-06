@@ -172,7 +172,7 @@ async function refreshPaymentStatus(orderId, orderNumber) {
         showAlert('info', '🔄 Mengecek status pembayaran...');
         
         // Check status from Midtrans
-        const response = await fetch(`${API_CONFIG.BASE_URL}/api/payments/midtrans/status/${orderNumber}`, {
+        const response = await fetch(`${API_CONFIG.BASE_URL}/api/payments?action=check&orderNumber=${orderNumber}`, {
             headers: {
                 'Authorization': `Bearer ${AppState.user.token}`
             }
@@ -228,7 +228,7 @@ async function payWithMidtrans(orderId, orderNumber) {
         showAlert('info', 'Membuat transaksi pembayaran...');
         
         // Create Midtrans transaction
-        const response = await fetch(`${API_CONFIG.BASE_URL}/api/payments/midtrans/create`, {
+        const response = await fetch(`${API_CONFIG.BASE_URL}/api/payments?action=create`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
