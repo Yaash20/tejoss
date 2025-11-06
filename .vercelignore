@@ -1,21 +1,33 @@
-# Ignore backend folder (not used in production)
+# ===================================
+# VERCEL IGNORE FILE
+# File-file yang TIDAK perlu di-deploy
+# ===================================
+
+# Backend folder (not used - using api/ instead)
 backend/
 
-# Ignore React components (using vanilla HTML/JS)
+# React components (using vanilla HTML/JS)
 components/
 App.tsx
 styles/globals.css
 
-# Ignore documentation
+# Documentation files
 *.md
 !README.md
 
-# Ignore test files
-test-*.js
-test-*.bat
-
-# Ignore batch files
+# Batch files
 *.bat
 
-# Ignore local env
+# Test files
+test-*.js
+generate-admin-hash.js
+
+# Local environment
+.env
 .env.local
+
+# Node modules
+node_modules/
+
+# Guidelines
+guidelines/
