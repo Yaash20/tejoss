@@ -159,10 +159,10 @@ async function renderDashboard() {
                 headers: { 'Authorization': `Bearer ${AppState.user.token}` }
             }),
             fetch(`${API_CONFIG.BASE_URL}/api/services`),
-            fetch(`${API_CONFIG.BASE_URL}/api/auth/admin/users`, {
+            fetch(`${API_CONFIG.BASE_URL}/api/auth?action=users`, {
                 headers: { 'Authorization': `Bearer ${AppState.user.token}` }
             }),
-            fetch(`${API_CONFIG.BASE_URL}/api/testimonials/admin/all`, {
+            fetch(`${API_CONFIG.BASE_URL}/api/testimonials?action=all`, {
                 headers: { 'Authorization': `Bearer ${AppState.user.token}` }
             })
         ]);
@@ -896,7 +896,7 @@ async function submitUpdateOrderStatus(event, orderId) {
 // ============================================
 async function renderCustomersManagement() {
     try {
-        const response = await fetch(`${API_CONFIG.BASE_URL}/api/auth/admin/users`, {
+        const response = await fetch(`${API_CONFIG.BASE_URL}/api/auth?action=users`, {
             headers: { 'Authorization': `Bearer ${AppState.user.token}` }
         });
         const data = await response.json();
@@ -959,7 +959,7 @@ async function renderCustomersManagement() {
 // View Customer Details
 async function viewCustomerDetails(customerId) {
     try {
-        const response = await fetch(`${API_CONFIG.BASE_URL}/api/auth/admin/users/${customerId}`, {
+        const response = await fetch(`${API_CONFIG.BASE_URL}/api/auth?action=user-detail&id=${customerId}`, {
             headers: { 'Authorization': `Bearer ${AppState.user.token}` }
         });
         const data = await response.json();
@@ -1042,7 +1042,7 @@ async function viewCustomerDetails(customerId) {
 // ============================================
 async function renderTestimonialsManagement() {
     try {
-        const response = await fetch(`${API_CONFIG.BASE_URL}/api/testimonials/admin/all`, {
+        const response = await fetch(`${API_CONFIG.BASE_URL}/api/testimonials?action=all`, {
             headers: { 'Authorization': `Bearer ${AppState.user.token}` }
         });
         const data = await response.json();

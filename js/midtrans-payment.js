@@ -51,7 +51,7 @@ async function handlePaymentSubmitWithMidtrans(event) {
         // Step 2: Create Midtrans transaction token
         console.log('Creating Midtrans transaction for order ID:', orderId);
         
-        const midtransResponse = await fetch(`${API_CONFIG.BASE_URL}/api/payments/midtrans/create`, {
+        const midtransResponse = await fetch(`${API_CONFIG.BASE_URL}/api/payments?action=create`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ async function handlePaymentSubmitWithMidtrans(event) {
                 
                 // Manual check payment status from Midtrans after success
                 try {
-                    const statusCheck = await fetch(`${API_CONFIG.BASE_URL}/api/payments/midtrans/status/${orderNumber}`, {
+                    const statusCheck = await fetch(`${API_CONFIG.BASE_URL}/api/payments?action=check&orderNumber=${orderNumber}`, {
                         headers: {
                             'Authorization': `Bearer ${AppState.user.token}`
                         }
@@ -105,7 +105,7 @@ async function handlePaymentSubmitWithMidtrans(event) {
                 
                 // Check status
                 try {
-                    await fetch(`${API_CONFIG.BASE_URL}/api/payments/midtrans/status/${orderNumber}`, {
+                    await fetch(`${API_CONFIG.BASE_URL}/api/payments?action=check&orderNumber=${orderNumber}`, {
                         headers: {
                             'Authorization': `Bearer ${AppState.user.token}`
                         }

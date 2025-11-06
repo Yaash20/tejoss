@@ -38,6 +38,16 @@ export default asyncHandler(async (req, res) => {
     return await handleChangePassword(req, res);
   }
   
+  // GET /api/auth?action=users (Admin only)
+  if (req.method === 'GET' && action === 'users') {
+    return await handleGetAllUsers(req, res);
+  }
+  
+  // GET /api/auth?action=user-detail&id=xxx (Admin only)
+  if (req.method === 'GET' && action === 'user-detail' && req.query.id) {
+    return await handleGetUserDetail(req, res, req.query.id);
+  }
+  
   return error(res, 'Invalid action or method', 400);
 });
 
@@ -221,4 +231,77 @@ async function handleChangePassword(req, res) {
     .eq('id', user.id);
   
   return success(res, null, 'Password berhasil diubah');
+}
+
+// Get All Users handler (Admin only)
+async function handleGetAllUsers(req, res) {
+  const user = await protect(req);
+  
+  if (user.role !== 'admin') {
+    return error(res, 'Akses ditolak', 403);
+  }
+  
+  // Get all users with stats
+  const { data: users, error: fetchError } = await supabase
+    .from('users')
+    .select('id, name, email, phone, role, created_at, updated_at')
+    .order('created_at', { ascending: false });
+  
+  if (fetchError) {
+    console.error('Fetch users error:', fetchError);
+    return error(res, 'Gagal mengambil data users', 500);
+  }
+  
+  // Get stats for each user
+  const usersWithStats = await Promise.all(users.map(async (u) => {
+    const { data: orders } = await supabase
+      .from('orders')
+      .select('total_price, payment_status')
+      .eq('user_id', u.id);
+    
+    const totalOrders = orders?.length || 0;
+    const totalSpent = orders
+      ?.filter(o => o.payment_status === 'paid')
+      .reduce((sum, o) => sum + parseFloat(o.total_price || 0), 0) || 0;
+    
+    return {
+      ...u,
+      total_orders: totalOrders,
+      total_spent: totalSpent
+    };
+  }));
+  
+  return success(res, usersWithStats);
+}
+
+// Get User Detail handler (Admin only)
+async function handleGetUserDetail(req, res, userId) {
+  const user = await protect(req);
+  
+  if (user.role !== 'admin') {
+    return error(res, 'Akses ditolak', 403);
+  }
+  
+  // Get user info
+  const { data: userInfo, error: userError } = await supabase
+    .from('users')
+    .select('id, name, email, phone, role, created_at')
+    .eq('id', userId)
+    .single();
+  
+  if (userError || !userInfo) {
+    return error(res, 'User tidak ditemukan', 404);
+  }
+  
+  // Get user's orders
+  const { data: orders } = await supabase
+    .from('orders')
+    .select('order_number, service_name, total_price, status, payment_status, created_at')
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false });
+  
+  return success(res, {
+    user: userInfo,
+    orders: orders || []
+  });
 }
