@@ -1573,7 +1573,9 @@ button:hover {
 .h-12 {
     height: 4rem;
 }
-
+.h-20 {
+    height: 5rem;
+}
 .h-16 {
     height: 4rem;
 }
