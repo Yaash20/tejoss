@@ -452,7 +452,7 @@
                                   </div>
                                   <div class="border-t pt-2 flex justify-between font-bold text-base">
                                       <span>Total:</span>
-                                      <span class="text-green-600" id="total-price"> ${formatCurrency(selectedService.price || 0)}</span>
+                                      <span class="text-green-600" id="total-price">     ${formatCurrency(selectedService.price || 0)}</span>
                                   </div>
                               </div>
                           </div>

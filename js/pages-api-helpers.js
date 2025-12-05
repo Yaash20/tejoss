@@ -161,8 +161,8 @@ function updatePriceSummary() {
     const totalPrice = document.getElementById('total-price');
     
     if (quantityDisplay) quantityDisplay.textContent = `${quantity} ${selectedService.unit || 'unit'}`;
-    if (subtotalPrice) subtotalPrice.textContent = `Rp ${formatCurrency(subtotal)}`;
-    if (totalPrice) totalPrice.textContent = `Rp ${formatCurrency(subtotal)}`;
+    if (subtotalPrice) subtotalPrice.textContent = ` ${formatCurrency(subtotal)}`;
+    if (totalPrice) totalPrice.textContent = ` ${formatCurrency(subtotal)}`;
 }
 
 // Refresh Payment Status
