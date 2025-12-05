@@ -356,7 +356,7 @@
                       <h3 class="font-semibold text-gray-900 mb-2">Layanan yang Dipilih:</h3>
                       <p class="text-lg">${selectedService.name}</p>
                       <p class="text-sm text-gray-600">${selectedService.description || ''}</p>
-                      <p class="text-lg font-bold text-green-600 mt-2">Rp ${formatCurrency(selectedService.price || 0)} / ${selectedService.unit || 'unit'}</p>
+                      <p class="text-lg font-bold text-green-600 mt-2"> ${formatCurrency(selectedService.price || 0)} / ${selectedService.unit || 'unit'}</p>
                   </div>
   
                   <!-- Payment Form -->
@@ -440,7 +440,7 @@
                               <div class="space-y-2 text-sm">
                                   <div class="flex justify-between">
                                       <span>Harga Layanan:</span>
-                                      <span id="base-price">Rp ${formatCurrency(selectedService.price || 0)}</span>
+                                      <span id="base-price"> ${formatCurrency(selectedService.price || 0)}</span>
                                   </div>
                                   <div class="flex justify-between">
                                       <span>Jumlah:</span>
@@ -448,11 +448,11 @@
                                   </div>
                                   <div class="flex justify-between">
                                       <span>Subtotal:</span>
-                                      <span id="subtotal-price">Rp ${formatCurrency(selectedService.price || 0)}</span>
+                                      <span id="subtotal-price"> ${formatCurrency(selectedService.price || 0)}</span>
                                   </div>
                                   <div class="border-t pt-2 flex justify-between font-bold text-base">
                                       <span>Total:</span>
-                                      <span class="text-green-600" id="total-price">Rp ${formatCurrency(selectedService.price || 0)}</span>
+                                      <span class="text-green-600" id="total-price"> ${formatCurrency(selectedService.price || 0)}</span>
                                   </div>
                               </div>
                           </div>
