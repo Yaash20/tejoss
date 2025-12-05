@@ -419,7 +419,7 @@ async function showServiceModal(serviceId = null) {
     
     if (serviceId) {
         title = 'Edit Layanan';
-        const response = await fetch(`${API_CONFIG.BASE_URL}/api/services/${serviceId}`);
+        const response = await fetch(`${API_CONFIG.BASE_URL}/api/services?id=${serviceId}`);
         const data = await response.json();
         service = data.data;
     }
@@ -531,7 +531,7 @@ async function submitService(event, serviceId) {
 
     try {
         const url = serviceId 
-            ? `${API_CONFIG.BASE_URL}/api/services/${serviceId}`
+            ? `${API_CONFIG.BASE_URL}/api/services?id=${serviceId}`
             : `${API_CONFIG.BASE_URL}/api/services`;
         
         const method = serviceId ? 'PUT' : 'POST';
@@ -572,7 +572,7 @@ async function deleteService(serviceId, serviceName) {
     }
 
     try {
-        const response = await fetch(`${API_CONFIG.BASE_URL}/api/services/${serviceId}`, {
+        const response = await fetch(`${API_CONFIG.BASE_URL}/api/services?id=${serviceId}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${AppState.user.token}` }
         });
@@ -864,7 +864,7 @@ async function submitUpdateOrderStatus(event, orderId) {
     }
 
     try {
-        const response = await fetch(`${API_CONFIG.BASE_URL}/api/orders/${orderId}/status`, {
+        const response = await fetch(`${API_CONFIG.BASE_URL}/api/orders?id=${orderId}&action=status`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -872,7 +872,7 @@ async function submitUpdateOrderStatus(event, orderId) {
             },
             body: JSON.stringify({ 
                 status: newStatus,
-                notes: `Status diubah menjadi ${getStatusText(newStatus)} oleh admin`
+                description: `Status diubah menjadi ${getStatusText(newStatus)} oleh admin`
             })
         });
 
@@ -1123,7 +1123,7 @@ async function renderTestimonialsManagement() {
 // Approve/Reject Testimonial
 async function approveTestimonial(testiId, status) {
     try {
-        const response = await fetch(`${API_CONFIG.BASE_URL}/api/testimonials/${testiId}/approve`, {
+        const response = await fetch(`${API_CONFIG.BASE_URL}/api/testimonials?id=${testiId}&action=approve`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -1149,7 +1149,7 @@ async function approveTestimonial(testiId, status) {
 // Toggle Featured Testimonial
 async function toggleFeatured(testiId, isFeatured) {
     try {
-        const response = await fetch(`${API_CONFIG.BASE_URL}/api/testimonials/${testiId}/approve`, {
+        const response = await fetch(`${API_CONFIG.BASE_URL}/api/testimonials?id=${testiId}&action=approve`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -1175,7 +1175,7 @@ async function toggleFeatured(testiId, isFeatured) {
 // View Testimonial Detail
 async function viewTestimonialDetail(testiId) {
     try {
-        const response = await fetch(`${API_CONFIG.BASE_URL}/api/testimonials/${testiId}`, {
+        const response = await fetch(`${API_CONFIG.BASE_URL}/api/testimonials?id=${testiId}`, {
             headers: { 'Authorization': `Bearer ${AppState.user.token}` }
         });
         const data = await response.json();
