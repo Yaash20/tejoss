@@ -905,12 +905,12 @@
   
   // ==================== PROFILE & SETTINGS PAGE ====================
   
-  async function renderProfileSettings() {
+  function renderProfileSettings() {
       // Check authentication first
       if (!isAuthenticated()) {
           showAlert('warning', 'Silakan login terlebih dahulu untuk mengakses halaman profil.');
           navigateTo('login');
-          return;
+          return '';
       }
       
       const loadingHTML = `
@@ -924,8 +924,7 @@
           </div>
       `;
       
-      document.getElementById('app-content').innerHTML = loadingHTML;
-      
+      // Load data asynchronously after rendering
       setTimeout(async () => {
           try {
               // Double check authentication before loading data
@@ -1204,9 +1203,9 @@
       
       const success = await updateUserProfile(profileData);
       if (success) {
-          // Reload profile page
-          renderProfileSettings();
-      }
+    document.getElementById('app-content').innerHTML = renderProfileSettings();  // ✅ Update DOM dengan hasil
+    lucide.createIcons();
+}
   }
   
   async function handleChangePassword(event) {
@@ -1386,7 +1385,8 @@
           
           // If on profile page, reload testimonials
           if (window.location.hash === '#profile') {
-              renderProfileSettings();
+          document.getElementById('app-content').innerHTML = renderProfileSettings();  // ✅ Update DOM dengan hasil
+    lucide.createIcons();
           } else if (window.location.hash === '#myorders') {
               navigateTo('myorders');
           }
