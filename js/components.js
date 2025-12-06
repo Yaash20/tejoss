@@ -6,6 +6,7 @@ function renderHomePage() {
         <div class="min-h-screen">
             <!-- Hero Section -->
             <section class="relative bg-gradient-to-br from-green-50 to-green-100 overflow-hidden" style="padding-top: 6rem; padding-bottom: 6rem;">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1566956884055-5034d746e52f?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXJtZXIlMjBmaWVsZCUyMGFncmljdWx0dXJlJTIwaW5kb25lc2lhfGVufDF8fHx8MTc1Njk5MDMyMXww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080')] bg-cover bg-center opacity-10"></div>
                 <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center">
                         <div class="mb-6">
